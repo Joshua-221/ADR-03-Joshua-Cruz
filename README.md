@@ -43,3 +43,16 @@ Elegimos la Arquitectura Hexagonal porque resuelve los problemas principales de 
 |-------------|---------------------|
 | **Mantener el Monolito MVC Tradicional (ADR-02)** | Se descartó porque los controladores de .NET se estaban volviendo muy grandes y la lógica de las rutinas de fuerza quedaba amarrada a las tablas de PostgreSQL, lo que generaba desorden. |
 | **Arquitectura de Microservicios** | Aunque separa muy bien las cosas, es demasiado compleja para el estado actual de Grind Core. Agregar servidores y bases de datos independientes para atletas y entrenamientos complicaría el despliegue innecesariamente. |
+
+---
+
+## Consecuencias
+
+**Lo que ganamos:**
+- Un código mucho más limpio, ordenado y desacoplado.
+- Facilidad para cambiar de tecnologías (como la base de datos) en el futuro sin romper la lógica del negocio.
+- Mayor facilidad para mantener el proyecto a largo plazo.
+
+**Lo que asumimos:**
+- Crearemos más archivos, carpetas e interfaces para separar las capas.
+- Tendremos que escribir mapeadores para transformar los datos de la base de datos a objetos del dominio de Powerlifting al entrar y salir de la aplicación.
