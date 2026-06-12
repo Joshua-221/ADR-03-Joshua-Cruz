@@ -56,3 +56,30 @@ Elegimos la Arquitectura Hexagonal porque resuelve los problemas principales de 
 **Lo que asumimos:**
 - Crearemos más archivos, carpetas e interfaces para separar las capas.
 - Tendremos que escribir mapeadores para transformar los datos de la base de datos a objetos del dominio de Powerlifting al entrar y salir de la aplicación.
+
+```mermaid
+graph LR
+    subgraph Adaptadores_Entrada [Adaptadores de Entrada]
+        A[Controladores Web / API]
+    end
+
+    subgraph Puertos_Entrada [Puertos de Entrada]
+        B[Interfaces de Casos de Uso]
+    end
+
+    subgraph Dominio [Núcleo del Dominio]
+        C((Reglas de Negocio <br> Atleta / Bloques / RPE))
+    end
+
+    subgraph Puertos_Salida [Puertos de Salida]
+        D[Interfaces de Repositorios]
+    end
+
+    subgraph Adaptadores_Salida [Adaptadores de Salida]
+        E[EF Core / PostgreSQL]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
