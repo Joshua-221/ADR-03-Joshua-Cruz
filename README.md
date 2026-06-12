@@ -24,3 +24,13 @@ El proyecto se reestructurará en tres áreas independientes:
 1. **Dominio (El Núcleo):** Contendrá únicamente las reglas de negocio puras del Powerlifting (Atletas, Series, Bloques de entrenamiento y fórmulas de fuerza) en clases limpias de C#, sin frameworks ni anotaciones de base de datos.
 2. **Puertos:** Interfaces que definen cómo se comunica el núcleo con el exterior (por ejemplo, cómo guardar un entrenamiento o cómo recibir datos).
 3. **Adaptadores:** La tecnología concreta. Aquí se ubicarán los controladores de ASP.NET Core para recibir las peticiones web (adaptadores de entrada) y Entity Framework / PostgreSQL para guardar los datos (adaptadores de salida).
+
+---
+
+## Justificación
+
+Elegimos la Arquitectura Hexagonal porque resuelve los problemas principales de nuestra app:
+
+- **Independencia de la lógica deportiva:** El cálculo del 1RM o el control del RPE no deben cambiar si decidimos modificar la base de datos o si dejamos de usar MVC en el futuro.
+- **Pruebas más fáciles:** Al separar el dominio, podemos hacer pruebas unitarias rápidas a las fórmulas de entrenamiento sin tener que levantar PostgreSQL o Supabase.
+- **Aislamiento de errores:** Si algo falla en la conexión de la base de datos o en la interfaz web, el núcleo del sistema de entrenamiento permanece intacto y protegido.
