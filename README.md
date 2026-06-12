@@ -34,3 +34,12 @@ Elegimos la Arquitectura Hexagonal porque resuelve los problemas principales de 
 - **Independencia de la lógica deportiva:** El cálculo del 1RM o el control del RPE no deben cambiar si decidimos modificar la base de datos o si dejamos de usar MVC en el futuro.
 - **Pruebas más fáciles:** Al separar el dominio, podemos hacer pruebas unitarias rápidas a las fórmulas de entrenamiento sin tener que levantar PostgreSQL o Supabase.
 - **Aislamiento de errores:** Si algo falla en la conexión de la base de datos o en la interfaz web, el núcleo del sistema de entrenamiento permanece intacto y protegido.
+
+---
+
+## Alternativas consideradas
+
+| Alternativa | Por qué la descarté |
+|-------------|---------------------|
+| **Mantener el Monolito MVC Tradicional (ADR-02)** | Se descartó porque los controladores de .NET se estaban volviendo muy grandes y la lógica de las rutinas de fuerza quedaba amarrada a las tablas de PostgreSQL, lo que generaba desorden. |
+| **Arquitectura de Microservicios** | Aunque separa muy bien las cosas, es demasiado compleja para el estado actual de Grind Core. Agregar servidores y bases de datos independientes para atletas y entrenamientos complicaría el despliegue innecesariamente. |
